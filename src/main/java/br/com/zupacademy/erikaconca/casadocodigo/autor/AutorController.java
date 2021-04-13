@@ -21,5 +21,9 @@ public class AutorController {
         Autor autor = autorRequest.toAutor();
         repository.save(autor);
 
+        if (!repository.existsByEmail(autorRequest.getEmail())) {
+            repository.save(autorRequest.toAutor());
+        }
+
    }
 }
