@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaController {
@@ -17,8 +19,9 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public void salvarCategoria(@RequestBody Categoria categoria){
-        repository.save(categoria);
+    public void salvarCategoria(@RequestBody @Valid CategoriaRequest categoriaRequest){
+
+        repository.save(categoriaRequest.toCategoria());
 
     }
 
