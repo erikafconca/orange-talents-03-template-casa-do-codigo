@@ -4,6 +4,7 @@ package br.com.zupacademy.erikaconca.casadocodigo.autor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/autores")
@@ -16,14 +17,14 @@ public class AutorController {
     }
 
     @PostMapping
-   public void cadastrarAutor(@RequestBody @Valid AutorRequest autorRequest){
+    public void cadastrarAutor(@RequestBody @Valid AutorRequest autorRequest) {
 
-        Autor autor = autorRequest.toAutor();
-        repository.save(autor);
+        repository.save(autorRequest.toAutor());
 
-        if (!repository.existsByEmail(autorRequest.getEmail())) {
-            repository.save(autorRequest.toAutor());
-        }
+    }
 
-   }
+    @GetMapping
+    public List<Autor> listar() {
+        return repository.findAll();
+    }
 }

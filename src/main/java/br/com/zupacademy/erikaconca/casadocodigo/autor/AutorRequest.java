@@ -1,5 +1,7 @@
 package br.com.zupacademy.erikaconca.casadocodigo.autor;
 
+import br.com.zupacademy.erikaconca.casadocodigo.validadore.ValidarCampoDuplicado;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -9,6 +11,7 @@ public class AutorRequest {
     @NotBlank
     private String nome;
     @NotBlank @Email
+    @ValidarCampoDuplicado(atributo = "email", aClass = Autor.class)
     private String email;
     @NotBlank @Size(max = 400)
     private String descricao;

@@ -1,13 +1,17 @@
 package br.com.zupacademy.erikaconca.casadocodigo.autor;
 
 
+import br.com.zupacademy.erikaconca.casadocodigo.validadore.Grupo;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
 public class Autor {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull(groups = Grupo.Autor.class)
     private Long id;
     @Column(nullable = false)
     private String nome;
